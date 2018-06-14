@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'app_init'      =>  ['Common\\Behavior\\EnvBehavior'],
+    'view_filter' => ['Behavior\TokenBuildBehavior'],
 ];
