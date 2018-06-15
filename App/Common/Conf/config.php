@@ -6,24 +6,24 @@ return array(
     'SITE_URL'        => env('SITE_URL'),
 
     /* 应用设定 */
-    'APP_USE_NAMESPACE'     =>  true,    // 应用类库是否使用命名空间
-    'APP_SUB_DOMAIN_DEPLOY' =>  false,   // 是否开启子域名部署
-    'APP_SUB_DOMAIN_RULES'  =>  array(), // 子域名部署规则
-    'APP_DOMAIN_SUFFIX'     =>  '', // 域名后缀 如果是com.cn net.cn 之类的后缀必须设置
-    'ACTION_SUFFIX'         =>  '', // 操作方法后缀
-    'MULTI_MODULE'          =>  true, // 是否允许多模块 如果为false 则必须设置 DEFAULT_MODULE
-    'MODULE_DENY_LIST'      =>  array('Common','Runtime'),
-    'CONTROLLER_LEVEL'      =>  1,
+    'APP_USE_NAMESPACE'     =>  env('APP_USE_NAMESPACE',true),    // 应用类库是否使用命名空间
+    'APP_SUB_DOMAIN_DEPLOY' =>  env('APP_SUB_DOMAIN_DEPLOY',false),   // 是否开启子域名部署
+    'APP_SUB_DOMAIN_RULES'  =>  str2array( env('APP_SUB_DOMAIN_RULES','') ) , // 子域名部署规则
+    'APP_DOMAIN_SUFFIX'     =>  env('APP_DOMAIN_SUFFIX',''), // 域名后缀 如果是com.cn net.cn 之类的后缀必须设置
+    'ACTION_SUFFIX'         =>  env('ACTION_SUFFIX',''), // 操作方法后缀
+    'MULTI_MODULE'          =>  env('MULTI_MODULE',false), // 是否允许多模块 如果为false 则必须设置 DEFAULT_MODULE
+    'MODULE_DENY_LIST'      =>  ['Common','Runtime'],
+    'CONTROLLER_LEVEL'      =>  env('CONTROLLER_LEVEL',1),
     'APP_AUTOLOAD_LAYER'    =>  'Controller,Model', // 自动加载的应用类库层 关闭APP_USE_NAMESPACE后有效
     'APP_AUTOLOAD_PATH'     =>  '', // 自动加载的路径 关闭APP_USE_NAMESPACE后有效
 
     /* Cookie设置 */
-    'COOKIE_EXPIRE'         =>  0,       // Cookie有效期
-    'COOKIE_DOMAIN'         =>  '.xy-pc.local',      // Cookie有效域名
-    'COOKIE_PATH'           =>  '/',     // Cookie路径
-    'COOKIE_PREFIX'         =>  '',      // Cookie前缀 避免冲突
-    'COOKIE_SECURE'         =>  false,   // Cookie安全传输
-    'COOKIE_HTTPONLY'       =>  '',      // Cookie httponly设置
+    'COOKIE_EXPIRE'         =>  env('COOKIE_EXPIRE',0),       // Cookie有效期
+    'COOKIE_DOMAIN'         =>  env('COOKIE_DOMAIN',''),      // Cookie有效域名
+    'COOKIE_PATH'           =>  env('COOKIE_PATH','/'),     // Cookie路径
+    'COOKIE_PREFIX'         =>  env('COOKIE_PREFIX',''),      // Cookie前缀 避免冲突
+    'COOKIE_SECURE'         =>  env('COOKIE_SECURE',false),   // Cookie安全传输
+    'COOKIE_HTTPONLY'       =>  env('COOKIE_HTTPONLY',''),      // Cookie httponly设置
 
     /* 默认设定 */
     'DEFAULT_M_LAYER'       =>  'Model', // 默认的模型层名称
@@ -41,10 +41,10 @@ return array(
     'DEFAULT_FILTER'        =>  'htmlspecialchars', // 默认参数过滤方法 用于I函数...
 
     /* 错误设置 */
-    'ERROR_MESSAGE'         =>  '页面错误！请稍后再试～',//错误显示信息,非调试模式有效
-    'ERROR_PAGE'            =>  '',	// 错误定向页面
-    'SHOW_ERROR_MSG'        =>  false,    // 显示错误信息
-    'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
+    'ERROR_MESSAGE'         =>  env('ERROR_MESSAGE','页面错误！请稍后再试～'),//错误显示信息,非调试模式有效
+    'ERROR_PAGE'            =>  env('ERROR_PAGE',''),	// 错误定向页面
+    'SHOW_ERROR_MSG'        =>  env('SHOW_ERROR_MSG',false),    // 显示错误信息
+    'TRACE_MAX_RECORD'      =>  env('TRACE_MAX_RECORD',100),    // 每个级别的错误信息 最大记录数
 
     /* 日志设置 */
     'LOG_RECORD'            =>  env('LOG_RECORD',false),   // 默认不记录日志
@@ -54,10 +54,10 @@ return array(
     'LOG_EXCEPTION_RECORD'  =>  env('LOG_EXCEPTION_RECORD',false),    // 是否记录异常信息日志
 
     /* SESSION设置 */
-    'SESSION_AUTO_START'    =>  true,    // 是否自动开启Session
+    'SESSION_AUTO_START'    =>  env('SESSION_AUTO_START',true),    // 是否自动开启Session
     'SESSION_OPTIONS'       =>  array(), // session 配置数组 支持type name id path expire domain 等参数
-    'SESSION_TYPE'          =>  '', // session hander类型 默认无需设置 除非扩展了session hander驱动
-    'SESSION_PREFIX'        =>  '', // session 前缀
+    'SESSION_TYPE'          =>  env('SESSION_TYPE',''), // session hander类型 默认无需设置 除非扩展了session hander驱动
+    'SESSION_PREFIX'        =>  env('SESSION_PREFIX',''), // session 前缀
     //'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
 
     /* 模板引擎设置 */
@@ -94,8 +94,8 @@ return array(
 
     /* URL设置 */
     'URL_ROUTER_ON'         =>  env('URL_ROUTER_ON',false),   // 是否开启URL路由
-    'URL_HTML_SUFFIX'       =>  'xy',  // URL伪静态后缀设置
-    'URL_CASE_INSENSITIVE'  =>  true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
+    'URL_HTML_SUFFIX'       =>  env('URL_HTML_SUFFIX','html'),  // URL伪静态后缀设置
+    'URL_CASE_INSENSITIVE'  =>  env('URL_CASE_INSENSITIVE',false),   // 默认false 表示URL区分大小写 true则表示不区分大小写
     'URL_MODEL'             =>  env('URL_MODEL',3),       // URL访问模式,可选参数0、1、2、3,代表以下四种模式：
     'URL_PATHINFO_DEPR'     =>  '/',	// PATHINFO模式下，各参数之间的分割符号
     'URL_PATHINFO_FETCH'    =>  'ORIG_PATH_INFO,REDIRECT_PATH_INFO,REDIRECT_URL', // 用于兼容判断PATH_INFO 参数的SERVER替代变量列表

@@ -1,14 +1,16 @@
 <?php
 namespace Home\Controller;
+
+use Course\Model\CourseModel;
 use Think\Controller;
-use Think\Log;
-use Think\Route;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        dump( C() );
+        $model          =   new CourseModel();
+        $result         =   $model->lock(true)->select();
+        dump( $model->getLastSql() );
     }
 
     public function test()

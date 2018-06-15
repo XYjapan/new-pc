@@ -94,9 +94,12 @@ $file_array         =   array_map( function($v){
     $item       =   explode( '=', $v );
     return $item;
 }, $file_array );
+
 foreach ($file_array as $value){
-    if( array_key_exists( 0, $value ) && array_key_exists( 1, $value ) ){
-        apache_setenv( trim($value[0]), trim($value[1]) );
+    if( array_key_exists( 0, $value ) && array_key_exists( 1, $value ) && $value[1] !== "" ){
+        $true_k         =   $origin_k      =   trim($value[0]);
+        $true_v         =   $origin_v      =   trim($value[1]);
+        apache_setenv( $true_k, $true_v );
     }
     continue;
 }
