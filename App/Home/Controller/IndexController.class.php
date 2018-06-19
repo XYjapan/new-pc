@@ -8,9 +8,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $model          =   new CourseModel();
-        $result         =   $model->lock(true)->select();
-        dump( $model->getLastSql() );
+        $this->display();
     }
 
     public function test()
@@ -21,6 +19,7 @@ class IndexController extends Controller
             'sex'       =>  'male',
         ];
 
+        $this->display();
         $this->ajaxReturn( $result, 'xml' );
     }
 }
